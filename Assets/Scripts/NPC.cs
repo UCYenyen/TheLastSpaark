@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class NPC : MonoBehaviour
@@ -8,8 +7,12 @@ public class NPC : MonoBehaviour
     public bool canInteractWithPlayer = false;
     public bool isInInteractArea = false;
     public GameObject npcNameGameObject;
+    public TextMeshProUGUI npcNameText;
     public GameObject pressEToInteractGameObject;
     public DialogueSO[] dialogueData;
+
+    public bool shouldFollowPlayer = false;
+    bool isFollowingPlayer = false;
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -41,7 +44,7 @@ public class NPC : MonoBehaviour
                         Interact();
                     }
                 }
-                
+
             }
         }
     }
@@ -50,7 +53,40 @@ public class NPC : MonoBehaviour
         pressEToInteractGameObject.SetActive(false);
         PlayerController.instance.isInteracting = true;
         PlayerController.instance.ResetVelocity();
+        UpdateNPCName();
         DialogueController.instance.SetDialogues(dialogueData);
         DialogueController.instance.ShowDialogue();
+
+        if (shouldFollowPlayer)
+        {
+            isFollowingPlayer = true;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (isFollowingPlayer)
+        {
+            Vector2 playerPosition = PlayerController.instance.transform.position;
+            Vector2 npcPosition = transform.position;
+
+            if (Vector2.Distance(playerPosition, npcPosition) > 0.1f)
+            {
+                Vector2 direction = (playerPosition - npcPosition).normalized;
+                transform.position = Vector2.MoveTowards(npcPosition, playerPosition, 2.25f * Time.fixedDeltaTime);
+            }
+        }
+    }
+
+    public void StopFollowingPlayer()
+    {
+        isFollowingPlayer = false;
+    }
+    public void UpdateNPCName()
+    {
+        if (npcNameText != null)
+        {
+            npcNameText.text = characterData.characterName;
+        }
     }
 }

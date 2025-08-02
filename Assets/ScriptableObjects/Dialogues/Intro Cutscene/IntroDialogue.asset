@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72223b3a58e634199bdcf58306e00ddc, type: 3}
+  m_Name: IntroDialogue
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - 100 tahun yang lalu ada sesuatu yang jatuh ke dunia
+  - Sejak saat itu, dunia menjadi kacau
+  - Dunia mulai membeku dan kehilangan cahaya
+  shouldUseFadeOut: 1
+  shouldUseFadeIn: 1
+  isCutSceneDialogue: 1
+  shouldPlayCutscene: 1
+  shouldContinueCutscene: 0
+  shouldLoadScene: 0
+  sceneToLoad: 
+  speakerData: {fileID: 0}
+  shouldGiveItem: 0

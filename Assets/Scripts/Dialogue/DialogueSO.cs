@@ -8,6 +8,18 @@ public class DialogueSO : ScriptableObject
     [TextArea(3, 10)]
     public string[] dialogueLines;
 
+    [Header("Animations")]
+    public bool shouldUseFadeOut = false;
+    public bool shouldUseFadeIn = false;
+
+    [Header("Cutscene settings")]
+    public bool isCutSceneDialogue = false;
+    public bool shouldPlayCutscene = false;
+    public bool shouldContinueCutscene = false;
+    public bool shouldLoadScene = false;
+    public string sceneToLoad = "";
+
     [Header("Settings")]
     public CharacterSO speakerData;
+    public bool shouldGiveItem = false;
 }

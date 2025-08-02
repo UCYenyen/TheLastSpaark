@@ -5,40 +5,31 @@ using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour
 {
-    public PolygonCollider2D roomConfiner;
+    public GameObject roomCamera;
     public ParticleSystem roomParticle;
     public Tilemap roomBurningTile;
-    void Start()
+    void OnTriggerEnter2D(Collider2D other)
     {
-
+        if (other.CompareTag("Player"))
+        {
+            PlayerController.instance.currentRoom = null;
+            PlayerController.instance.currentRoom = this;
+            roomCamera.SetActive(true);
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             PlayerController.instance.currentRoom = this;
+            roomCamera.SetActive(true);
         }
     }
-    void OnTriggerStay(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            if (PlayerController.instance.currentRoom != this)
-            {
-                PlayerController.instance.currentRoom = this;
-            }
-        }
-    }
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
+            roomCamera.SetActive(false);
             PlayerController.instance.currentRoom = null;
         }
     }
