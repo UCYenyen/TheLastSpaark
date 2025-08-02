@@ -5,14 +5,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
+    public CharacterSO characterData;
     public Room currentRoom;
 
     [Header("Player References")]
+    [HideInInspector] public bool isInteracting = false;
     public Rigidbody2D rb;
     public float moveSpeed = 5f;
     public Animator anim;
     public Vector2 moveDirection;
     [HideInInspector] public Vector2 lastMoveDirection;
+
     [Header("Player Dash")]
     bool isDashing = false;
     public float dashSpeed;
@@ -38,17 +41,15 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Dash();
+            if (!isInteracting)
+            {
+                Dash();
+            }
         }
         CalculateDash();
         CalculateDashCooldown();
@@ -59,9 +60,9 @@ public class PlayerController : MonoBehaviour
     }
     void HandleMovement()
     {
-        if (!isDashing)
+        if (!isDashing && !isInteracting)
         {
-             moveDirection.x = Input.GetAxisRaw("Horizontal");
+            moveDirection.x = Input.GetAxisRaw("Horizontal");
             moveDirection.y = Input.GetAxisRaw("Vertical");
 
             if (moveDirection != Vector2.zero)
@@ -113,5 +114,11 @@ public class PlayerController : MonoBehaviour
                 dashCooldown = 0f;
             }
         }
+    }
+
+    public void ResetVelocity()
+    {
+        rb.velocity = Vector2.zero;
+        anim.SetBool("isWalking", false);
     }
 }

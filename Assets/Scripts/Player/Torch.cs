@@ -28,7 +28,7 @@ public class Torch : MonoBehaviour
         UIController.instance.torchSlider.value = currentTorchLight;
         torchLight.intensity = currentTorchLight / maxTorchLight;
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             BurnTilesAhead();
         }
@@ -60,6 +60,8 @@ public class Torch : MonoBehaviour
         {
             return;
         }
+        
+        PlayerController.instance.ResetVelocity();
 
         Vector3 facingDirection = PlayerController.instance.lastMoveDirection;
 
