@@ -22,4 +22,6 @@ public class DialogueSO : ScriptableObject
     [Header("Settings")]
     public CharacterSO speakerData;
     public bool shouldGiveItem = false;
+    public bool shouldFollowPlayerAfterDialogue = false;
+    public bool shouldDisableNPCAfterDialogue = false;
 }

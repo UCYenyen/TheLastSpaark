@@ -143493,6 +143493,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4683606860810710351, guid: 29ea76f8554244563be91d086834468e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.935547
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683606860810710351, guid: 29ea76f8554244563be91d086834468e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 8.344696
+      objectReference: {fileID: 0}
     - target: {fileID: 6459228364921292636, guid: 29ea76f8554244563be91d086834468e, type: 3}
       propertyPath: m_Name
       value: UI Canvas
@@ -143644,6 +143652,10 @@ PrefabInstance:
     - target: {fileID: 8212716611026813231, guid: 29ea76f8554244563be91d086834468e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580182803222044533, guid: 29ea76f8554244563be91d086834468e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.935547
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -143972,7 +143984,7 @@ MonoBehaviour:
   canInteractWithPlayer: 1
   isInInteractArea: 0
   npcNameGameObject: {fileID: 9160065829677689840}
-  npcNameText: {fileID: 0}
+  npcNameText: {fileID: 131413482817366583}
   pressEToInteractGameObject: {fileID: 1697771646178604849}
   dialogueData:
   - {fileID: 11400000, guid: 868b109ef646b4e66abb33073e0ca0a8, type: 2}

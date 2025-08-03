@@ -13,6 +13,7 @@ public class NPC : MonoBehaviour
 
     public bool shouldFollowPlayer = false;
     bool isFollowingPlayer = false;
+    bool isInDialogue = false;
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -53,14 +54,10 @@ public class NPC : MonoBehaviour
         pressEToInteractGameObject.SetActive(false);
         PlayerController.instance.isInteracting = true;
         PlayerController.instance.ResetVelocity();
+        PlayerController.instance.talkingWithNPC = this;
         UpdateNPCName();
         DialogueController.instance.SetDialogues(dialogueData);
         DialogueController.instance.ShowDialogue();
-
-        if (shouldFollowPlayer)
-        {
-            isFollowingPlayer = true;
-        }
     }
 
     void FixedUpdate()
@@ -70,9 +67,8 @@ public class NPC : MonoBehaviour
             Vector2 playerPosition = PlayerController.instance.transform.position;
             Vector2 npcPosition = transform.position;
 
-            if (Vector2.Distance(playerPosition, npcPosition) > 0.1f)
+            if (Vector2.Distance(playerPosition, npcPosition) > 0.5f)
             {
-                Vector2 direction = (playerPosition - npcPosition).normalized;
                 transform.position = Vector2.MoveTowards(npcPosition, playerPosition, 2.25f * Time.fixedDeltaTime);
             }
         }
@@ -81,6 +77,10 @@ public class NPC : MonoBehaviour
     public void StopFollowingPlayer()
     {
         isFollowingPlayer = false;
+    }
+    public void StartFollowingPlayer()
+    {
+        isFollowingPlayer = true;
     }
     public void UpdateNPCName()
     {

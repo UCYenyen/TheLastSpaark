@@ -30,6 +30,17 @@ public class PlayerController : MonoBehaviour
     [Header("Player Items")]
     public Torch playerTorch;
 
+    [Header("Freeze Meter")]
+    public GameObject freezeCrystal;
+    public float currentFreezeMeter = 0f;
+    public float maxFreezeMeter = 100f;
+    public float freezeDecayRate = 1f;
+    public bool isFrozen = false;
+
+    [Header("MISC")]
+    public NPC talkingWithNPC;
+    public bool isNearlightSource = false;
+
     void Awake()
     {
         if (instance == null)
@@ -45,13 +56,38 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isNearlightSource)
+        {
+            if (currentFreezeMeter < 100f)
+            {
+                currentFreezeMeter += freezeDecayRate * Time.deltaTime;
+                currentFreezeMeter = Mathf.Clamp(currentFreezeMeter, 0f, maxFreezeMeter);
+                UIController.instance.freezeMeterSlider.fillAmount = currentFreezeMeter / maxFreezeMeter;
+            }
+            else
+            {
+                isFrozen = true;
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!isInteracting)
+            if (!isInteracting && !isFrozen)
             {
                 Dash();
             }
         }
+        if (isFrozen)
+        {
+            ResetVelocity();
+
+            UIController.instance.freezeMeterAnimator.Play("frozen");
+            freezeCrystal.SetActive(true);
+        }
+        else
+        {
+            UIController.instance.freezeMeterAnimator.Play("normal");
+        }
+
         CalculateDash();
         CalculateDashCooldown();
     }
@@ -61,7 +97,7 @@ public class PlayerController : MonoBehaviour
     }
     void HandleMovement()
     {
-        if (!isDashing && !isInteracting)
+        if (!isDashing && !isInteracting && !isFrozen)
         {
             moveDirection.x = Input.GetAxisRaw("Horizontal");
             moveDirection.y = Input.GetAxisRaw("Vertical");
@@ -121,5 +157,22 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         anim.SetBool("isWalking", false);
+    }
+
+    public void IncrementFreezeMeter(float incrementSpeed)
+    {
+        if (currentFreezeMeter < maxFreezeMeter)
+        {
+            maxFreezeMeter += Time.deltaTime * incrementSpeed;
+        }
+    }
+    public void DecrementFreezeMeter(float decrementSpeed)
+    {
+        if (currentFreezeMeter > 0f)
+        {
+            currentFreezeMeter -= Time.deltaTime * decrementSpeed;
+            currentFreezeMeter = Mathf.Clamp(currentFreezeMeter, 0f, maxFreezeMeter);
+            UIController.instance.freezeMeterSlider.fillAmount = currentFreezeMeter / maxFreezeMeter;
+        }
     }
 }

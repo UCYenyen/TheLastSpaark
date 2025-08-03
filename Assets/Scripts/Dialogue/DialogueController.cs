@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Playables;
+using Unity.VisualScripting;
 
 public class DialogueController : MonoBehaviour
 {
@@ -259,6 +260,11 @@ public class DialogueController : MonoBehaviour
         if (!dialogues[currentDialogueIndex - 1].isCutSceneDialogue)
         {
             PlayerController.instance.isInteracting = false;
+            if (dialogues[currentDialogueIndex - 1].shouldFollowPlayerAfterDialogue)
+            {
+                PlayerController.instance.talkingWithNPC.StartFollowingPlayer();
+                PlayerController.instance.talkingWithNPC = null;
+            }
             dialogueUI.gameObject.SetActive(false);
         }
         else

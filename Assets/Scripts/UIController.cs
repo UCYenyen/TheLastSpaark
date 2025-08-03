@@ -13,7 +13,12 @@ public class UIController : MonoBehaviour
     [Header("UI References")]
     public Image[] hearts;
     [HideInInspector] public int currentHealth;
-    public Slider torchSlider;
+
+    [Header("Sliders")]
+    public Image torchSlider;
+    public Image freezeMeterSlider;
+    public Animator torchAnimator;
+    public Animator freezeMeterAnimator;
 
     [Header("Pause Menu")]
     public GameObject pausePanel;

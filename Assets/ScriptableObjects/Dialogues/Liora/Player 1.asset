@@ -23,3 +23,5 @@ MonoBehaviour:
   sceneToLoad: 
   speakerData: {fileID: 11400000, guid: 438f7eb30e15648cab873d803af77d6f, type: 2}
   shouldGiveItem: 0
+  shouldFollowPlayerAfterDialogue: 1
+  shouldDisableNPCAfterDialogue: 0

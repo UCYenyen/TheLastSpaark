@@ -15,7 +15,9 @@ public class Campfire : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
+                    PlayerController.instance.playerTorch.gameObject.SetActive(true);
                     PlayerController.instance.playerTorch.RefillTorch(100f);
+                    PlayerController.instance.isNearlightSource = true;
                 }
             }
         }
@@ -26,6 +28,10 @@ public class Campfire : MonoBehaviour
         {
             popUp.SetActive(true);
             canRefillTorch = true;
+            if (isLit)
+            {
+                PlayerController.instance.isNearlightSource = true;
+            }
         }
     }
     void OnTriggerStay2D(Collider2D collision)
@@ -34,6 +40,10 @@ public class Campfire : MonoBehaviour
         {
             popUp.SetActive(true);
             canRefillTorch = true;
+            if (isLit)
+            {
+                PlayerController.instance.isNearlightSource = true;
+            }
         }
     }
     void OnTriggerExit2D(Collider2D collision)
@@ -42,6 +52,10 @@ public class Campfire : MonoBehaviour
         {
             popUp.SetActive(false);
             canRefillTorch = false;
+            if (PlayerController.instance.playerTorch.currentTorchLight <= 0)
+            {
+                PlayerController.instance.isNearlightSource = false;
+            }
         }
     }
 }

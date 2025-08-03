@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
@@ -12,20 +12,33 @@ public class Torch : MonoBehaviour
     public float torchDecayRate = 1f;
     public Light2D torchLight;
     public AnimatedTile burningTile;
-    public float burnDuration; 
+    public float burnDuration;
     void Start()
     {
         currentTorchLight = maxTorchLight;
-        UIController.instance.torchSlider.maxValue = maxTorchLight;
-        UIController.instance.torchSlider.value = maxTorchLight;
+        UIController.instance.torchSlider.fillAmount = 1f;
+        PlayerController.instance.isNearlightSource = true;
     }
-
+    void OnDisable()
+    {
+        PlayerController.instance.isNearlightSource = false;
+    }
     // Update is called once per frame
     void Update()
     {
-        currentTorchLight -= torchDecayRate * Time.deltaTime;
+        if (currentTorchLight > 0)
+        {
+            currentTorchLight -= torchDecayRate * Time.deltaTime;
+            UIController.instance.torchAnimator.Play("torchLit");
+        }
+        else
+        {
+            UIController.instance.torchAnimator.Play("torch-non-lit");
+            gameObject.SetActive(false);
+        }
+       
         currentTorchLight = Mathf.Clamp(currentTorchLight, 0, maxTorchLight);
-        UIController.instance.torchSlider.value = currentTorchLight;
+        UIController.instance.torchSlider.fillAmount = currentTorchLight / maxTorchLight;
         torchLight.intensity = currentTorchLight / maxTorchLight;
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -40,17 +53,19 @@ public class Torch : MonoBehaviour
         {
             currentTorchLight = maxTorchLight;
         }
-        UIController.instance.torchSlider.value = currentTorchLight;
+        UIController.instance.torchSlider.fillAmount = currentTorchLight;
+        UIController.instance.torchAnimator.Play("torchLit");
     }
     public void UseTorch(float amount)
     {
         currentTorchLight -= amount;
         currentTorchLight = Mathf.Clamp(currentTorchLight, 0, maxTorchLight);
-        UIController.instance.torchSlider.value = currentTorchLight / maxTorchLight;
+        UIController.instance.torchSlider.fillAmount = currentTorchLight / maxTorchLight;
 
         if (currentTorchLight <= 0)
         {
             currentTorchLight = 0;
+            UIController.instance.torchAnimator.Play("torch-non-lit");
         }
     }
 
@@ -70,6 +85,8 @@ public class Torch : MonoBehaviour
             Debug.LogWarning("Tilemap component not found on Torch object.");
             return;
         }
+
+        UIController.instance.torchAnimator.Play("torch-non-lit");
 
         for (int i = 1; i <= tilesBurnRange; i++)
         {
