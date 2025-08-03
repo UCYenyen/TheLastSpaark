@@ -30,6 +30,7 @@ public class Torch : MonoBehaviour
         {
             currentTorchLight -= torchDecayRate * Time.deltaTime;
             UIController.instance.torchAnimator.Play("torchLit");
+            PlayerController.instance.isNearlightSource = true;
         }
         else
         {
@@ -92,18 +93,15 @@ public class Torch : MonoBehaviour
         {
             Vector3 worldPos = transform.position + facingDirection * i;
             Vector3Int cellPos = PlayerController.instance.currentRoom.roomBurningTile.WorldToCell(worldPos);
+            Vector3 cellWorldCenter = PlayerController.instance.currentRoom.roomBurningTile.GetCellCenterWorld(cellPos);
 
             PlayerController.instance.currentRoom.roomBurningTile.SetTile(cellPos, burningTile);
-            ObjectPooler.instance.SpawnPooledObject(cellPos, Quaternion.identity);
-            currentTorchLight = 0;
+            ObjectPooler.instance.SpawnPooledObject(cellWorldCenter, Quaternion.identity);
             // Start coroutine to reset the tile after 3 seconds
-            StartCoroutine(ResetTileAfterDelay(PlayerController.instance.currentRoom.roomBurningTile, cellPos, burnDuration));
+            GameManager.instance.ResetTile(PlayerController.instance.currentRoom.roomBurningTile, cellPos, burnDuration);
+            currentTorchLight = 0;
         }
     }
 
-    private IEnumerator ResetTileAfterDelay(Tilemap tilemap, Vector3Int cellPos, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        tilemap.SetTile(cellPos, null);
-    }
+    
 }

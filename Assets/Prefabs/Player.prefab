@@ -100,7 +100,7 @@ MonoBehaviour:
   tilesBurnRange: 3
   maxTorchLight: 100
   currentTorchLight: 100
-  torchDecayRate: 3
+  torchDecayRate: 1
   torchLight: {fileID: 9181453243711260036}
   burningTile: {fileID: 11400000, guid: 1ab9833a4c1fc4b6e827603ebf3d0bb6, type: 2}
   burnDuration: 2
@@ -245,6 +245,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 6318601961841067588}
+  targetNPC: {fileID: 0}
+  isPlayerFrozenCrystal: 1
 --- !u!1 &3869895964639641000
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f831e2a0491694a40be4bd57d374084e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezeMeterIncrementSpeed: 1
+  freezeMeterDecrementSpeed: 1
 --- !u!1 &4227287151808205247
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,6 +341,7 @@ GameObject:
   - component: {fileID: 1566781360513868515}
   - component: {fileID: 4486394003252188282}
   - component: {fileID: 1263731902369657680}
+  - component: {fileID: 6569850941842410857}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -461,6 +464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 438f7eb30e15648cab873d803af77d6f, type: 2}
   currentRoom: {fileID: 0}
+  healthController: {fileID: 6569850941842410857}
   isInteracting: 0
   rb: {fileID: 9100726337074754621}
   moveSpeed: 3.5
@@ -476,8 +480,23 @@ MonoBehaviour:
   maxFreezeMeter: 100
   freezeDecayRate: 10
   isFrozen: 0
+  isDead: 0
   talkingWithNPC: {fileID: 0}
   isNearlightSource: 0
+--- !u!114 &6569850941842410857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4227287151808205247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c622b664802449a7b1e969dd7daff43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 3
+  maxHealth: 3
 --- !u!1 &7995344493934173449
 GameObject:
   m_ObjectHideFlags: 0

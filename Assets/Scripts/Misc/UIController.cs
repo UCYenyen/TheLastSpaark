@@ -9,10 +9,15 @@ public class UIController : MonoBehaviour
     bool fadeIn = false;
     bool fadeOut = false;
 
+    [Header("TakeDamageEffect")]
+    public CanvasGroup takeDamagePanel;
+    public float takeDamageFadeTime = 0.5f;
+    private float takeDamageTimer = 0f;
 
     [Header("UI References")]
     public Image[] hearts;
-    [HideInInspector] public int currentHealth;
+    public Sprite fullHeartSprite;
+    public Sprite emptyHeartSprite;
 
     [Header("Sliders")]
     public Image torchSlider;
@@ -50,6 +55,7 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CalculateTakeDamageEffect();
         CalculateFadeInFadeOut();
     }
     public void FadeIn()
@@ -59,6 +65,37 @@ public class UIController : MonoBehaviour
     public void FadeOut()
     {
         fadeOut = true;
+    }
+    public void TakeDamageEffect()
+    {
+        takeDamagePanel.alpha = 1f;
+        takeDamageTimer = takeDamageFadeTime;
+    }
+    void CalculateTakeDamageEffect()
+    {
+        if (takeDamageTimer > 0f)
+        {
+            takeDamageTimer -= Time.deltaTime;
+            takeDamagePanel.alpha = Mathf.Lerp(1f, 0f, 1f - (takeDamageTimer / takeDamageFadeTime));
+        }
+        else
+        {
+            takeDamagePanel.alpha = 0f;
+        }
+    }
+    public void UpdateHealthUI(int currentHealth, int maxHealth)
+    {
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < currentHealth)
+            {
+                hearts[i].sprite = fullHeartSprite;
+            }
+            else
+            {
+                hearts[i].sprite = emptyHeartSprite;
+            }
+        }
     }
     public void CalculateFadeInFadeOut()
     {

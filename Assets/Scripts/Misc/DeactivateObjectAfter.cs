@@ -11,6 +11,10 @@ public class DeactivateObjectAfter : MonoBehaviour
     {
         deactivateTimer = statDeactivateTime;
     }
+    void OnDisable()
+    {
+        deactivateTimer = statDeactivateTime;
+    }
 
     void Update()
     {

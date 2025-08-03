@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Room currentRoom;
 
     [Header("Player References")]
+    public PlayerHealthController healthController;
     [HideInInspector] public bool isInteracting = false;
     public Rigidbody2D rb;
     public float moveSpeed = 5f;
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
     public bool isFrozen = false;
 
     [Header("MISC")]
+    public bool isDead = false;
     public NPC talkingWithNPC;
     public bool isNearlightSource = false;
 
@@ -71,7 +73,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!isInteracting && !isFrozen)
+            if (!isInteracting && !isFrozen && !isDead && !isDashing)
             {
                 Dash();
             }
@@ -97,7 +99,7 @@ public class PlayerController : MonoBehaviour
     }
     void HandleMovement()
     {
-        if (!isDashing && !isInteracting && !isFrozen)
+        if (!isDashing && !isInteracting && !isFrozen && !isDead)
         {
             moveDirection.x = Input.GetAxisRaw("Horizontal");
             moveDirection.y = Input.GetAxisRaw("Vertical");
