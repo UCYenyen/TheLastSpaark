@@ -11,6 +11,8 @@ public class DialogueSO : ScriptableObject
     [Header("Animations")]
     public bool shouldUseFadeOut = false;
     public bool shouldUseFadeIn = false;
+    public bool shouldFadeOutUsingUICanvasFadePanel = false;
+    public bool shouldFadeInUsingUICanvasFadePanel = false;
 
     [Header("Cutscene settings")]
     public bool isCutSceneDialogue = false;

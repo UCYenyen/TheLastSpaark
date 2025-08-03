@@ -47,4 +47,5 @@ MonoBehaviour:
   shouldTalkImmediately: 0
   dialogues:
   - {fileID: 11400000, guid: f82897cda958a4c7d80da7e77877fd77, type: 2}
+  npcName: Liora
   shouldChangeTheDialogueComponentInAnNPC: 1

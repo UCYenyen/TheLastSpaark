@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72223b3a58e634199bdcf58306e00ddc, type: 3}
+  m_Name: PlayerRespond to Vera thanksness
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Tentu, senang membantu.
+  shouldUseFadeOut: 0
+  shouldUseFadeIn: 0
+  shouldFadeOutUsingUICanvasFadePanel: 0
+  shouldFadeInUsingUICanvasFadePanel: 0
+  isCutSceneDialogue: 0
+  shouldPlayCutscene: 0
+  shouldContinueCutscene: 0
+  shouldLoadScene: 0
+  sceneToLoad: 
+  speakerData: {fileID: 11400000, guid: 438f7eb30e15648cab873d803af77d6f, type: 2}
+  shouldGiveItem: 0
+  shouldFollowPlayerAfterDialogue: 0
+  shouldDisableNPCAfterDialogue: 0
+  shouldChangeDialogueAfterThis: 1
+  dialogueChangerToSpawn: {fileID: 4344466507172091514, guid: 58d3c01c9074640668ae5da4e10c23dc, type: 3}
+  shouldGiveQuest: 0
+  shouldCompleteQuest: 1
+  questToGive: {fileID: 11400000, guid: 437329a3e6bd64be199b9bdba3662ade, type: 2}

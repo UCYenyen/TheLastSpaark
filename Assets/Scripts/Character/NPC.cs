@@ -13,7 +13,13 @@ public class NPC : MonoBehaviour
     public bool canInteractWithPlayer = false;
     public bool isInInteractArea = false;
     public bool shouldFollowPlayer = false;
-    bool isFollowingPlayer = false;
+    [HideInInspector] public bool isFollowingPlayer = false;
+
+    [Header("Follow Other NPC Settings")]
+    public bool shouldFollowOtherNPC = false;
+    public bool canFollowOtherNPC = false;
+    public bool isFollowingOtherNPC = false;
+    public NPC otherNPCToFollow;
 
     [Header("Freeze Settings")]
     public Image freezeMeterFillAmount;
@@ -23,7 +29,7 @@ public class NPC : MonoBehaviour
     public bool isFrozen = false;
     public float freezeRate = 1f; // Rate at which the freeze meter increases
     public float maxFreezeMeter = 100f;
-    [HideInInspector] public float currentFreezeMeter;
+    public float currentFreezeMeter;
     public FreezeCrystal freezeCrystal;
     
     [Header("UI")]
@@ -42,9 +48,12 @@ public class NPC : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            isInInteractArea = true;
-            npcNameGameObject.SetActive(true);
-            pressEToInteractGameObject.SetActive(true);
+            if (canInteractWithPlayer)
+            {
+                isInInteractArea = true;
+                npcNameGameObject.SetActive(true);
+                pressEToInteractGameObject.SetActive(true);
+            }
         }
     }
     void OnTriggerExit2D(Collider2D collision)
@@ -128,6 +137,10 @@ public class NPC : MonoBehaviour
         {
             CheckLioraQuest();
         }
+        if (characterData.characterName == "Vera")
+        {
+            CheckVeraQuest();
+        }
     }
     void CheckLioraQuest()
     {
@@ -158,6 +171,36 @@ public class NPC : MonoBehaviour
         }
     }
 
+    void CheckVeraQuest()
+    {
+        if (isQuestNPC && questData != null)
+        {
+            if (QuestController.instance.activeQuests.Contains(questData) && questData.isQuestCompleted == false)
+            {
+                // Logic to handle quest interaction
+                if (PlayerController.instance.currentRoom != null)
+                {
+                     if (PlayerController.instance.currentRoom.roomName == questData.destination)
+                    {
+                        NPC tamon = GameManager.instance.FindNPC("Tamon");
+                        if (Vector2.Distance(transform.position, tamon.transform.position) <= 1f)
+                        {
+                            QuestController.instance.CompleteQuest(questData);
+                            tamon.isFollowingPlayer = false;
+                            tamon.shouldFollowPlayer = false;
+                            tamon.anim.SetBool("isWalking", false);
+
+                            if (dialogueChanger != null)
+                            {
+                                dialogueChanger.gameObject.SetActive(true);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     void FixedUpdate()
     {
         if (isFollowingPlayer && isFrozen == false)
@@ -174,12 +217,36 @@ public class NPC : MonoBehaviour
                 }
                 else
                 {
-                     anim.SetBool("isWalking", false);
+                    anim.SetBool("isWalking", false);
                 }
             }
             else
             {
                 anim.SetBool("isWalking", false);
+            }
+        }
+        else if (isFollowingOtherNPC && isFrozen == false)
+        {
+            if (otherNPCToFollow != null)
+            {
+                Vector2 position = transform.position;
+                Vector2 targetPosition = otherNPCToFollow.transform.position;
+                if (Vector2.Distance(position, targetPosition) > 2f)
+                {
+                    if (Vector2.Distance(position, targetPosition) < 5f)
+                    {
+                        transform.position = Vector2.MoveTowards(transform.position, targetPosition, 2.25f * Time.fixedDeltaTime);
+                        anim.SetBool("isWalking", true);
+                    }
+                    else
+                    {
+                        anim.SetBool("isWalking", false);
+                    }
+                }
+                else
+                {
+                    anim.SetBool("isWalking", false);
+                }
             }
         }
     }

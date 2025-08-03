@@ -28,7 +28,11 @@ public class Torch : MonoBehaviour
     {
         if (currentTorchLight > 0)
         {
-            currentTorchLight -= torchDecayRate * Time.deltaTime;
+            if (PlayerController.instance.isInteracting == false)
+            {
+                currentTorchLight -= torchDecayRate * Time.deltaTime;
+            }
+
             UIController.instance.torchAnimator.Play("torchLit");
             PlayerController.instance.isNearlightSource = true;
         }
@@ -37,7 +41,7 @@ public class Torch : MonoBehaviour
             UIController.instance.torchAnimator.Play("torch-non-lit");
             gameObject.SetActive(false);
         }
-       
+
         currentTorchLight = Mathf.Clamp(currentTorchLight, 0, maxTorchLight);
         UIController.instance.torchSlider.fillAmount = currentTorchLight / maxTorchLight;
         torchLight.intensity = currentTorchLight / maxTorchLight;
@@ -76,7 +80,7 @@ public class Torch : MonoBehaviour
         {
             return;
         }
-        
+
         PlayerController.instance.ResetVelocity();
 
         Vector3 facingDirection = PlayerController.instance.lastMoveDirection;
@@ -103,5 +107,5 @@ public class Torch : MonoBehaviour
         }
     }
 
-    
+
 }

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72223b3a58e634199bdcf58306e00ddc, type: 3}
+  m_Name: Tamon afther quest
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - Kalau api itu padam.
+  - Semuanya akan menghilang.
+  - Termasuk kamu.
+  shouldUseFadeOut: 0
+  shouldUseFadeIn: 0
+  isCutSceneDialogue: 0
+  shouldPlayCutscene: 0
+  shouldContinueCutscene: 0
+  shouldLoadScene: 0
+  sceneToLoad: 
+  speakerData: {fileID: 11400000, guid: f8de4be30cc066a41810bab93947be1a, type: 2}
+  shouldGiveItem: 0
+  shouldFollowPlayerAfterDialogue: 0
+  shouldDisableNPCAfterDialogue: 0
+  shouldGiveQuest: 0
+  shouldCompleteQuest: 0
+  questToGive: {fileID: 0}

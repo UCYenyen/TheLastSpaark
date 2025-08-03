@@ -60,15 +60,18 @@ public class PlayerController : MonoBehaviour
     {
         if (!isNearlightSource)
         {
-            if (currentFreezeMeter < 100f)
+            if (isInteracting == false)
             {
-                currentFreezeMeter += freezeDecayRate * Time.deltaTime;
-                currentFreezeMeter = Mathf.Clamp(currentFreezeMeter, 0f, maxFreezeMeter);
-                UIController.instance.freezeMeterSlider.fillAmount = currentFreezeMeter / maxFreezeMeter;
-            }
-            else
-            {
-                isFrozen = true;
+                 if (currentFreezeMeter < 100f)
+                {
+                    currentFreezeMeter += freezeDecayRate * Time.deltaTime;
+                    currentFreezeMeter = Mathf.Clamp(currentFreezeMeter, 0f, maxFreezeMeter);
+                    UIController.instance.freezeMeterSlider.fillAmount = currentFreezeMeter / maxFreezeMeter;
+                }
+                else
+                {
+                    isFrozen = true;
+                }
             }
         }
         if (Input.GetKeyDown(KeyCode.Space))

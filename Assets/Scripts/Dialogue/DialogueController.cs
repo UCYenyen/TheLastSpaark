@@ -280,10 +280,19 @@ public class DialogueController : MonoBehaviour
                 SceneManager.LoadScene(dialogues[currentDialogueIndex - 1].sceneToLoad);
             }
         }
-        if (dialogues[currentDialogueIndex - 1].shouldDisableNPCAfterDialogue)
+
+        if (dialogues[currentDialogueIndex - 1].shouldFadeInUsingUICanvasFadePanel)
         {
-            PlayerController.instance.talkingWithNPC.gameObject.SetActive(false);
+            UIController.instance.FadeIn();
         }
+        if (dialogues[currentDialogueIndex - 1].shouldFadeOutUsingUICanvasFadePanel)
+        {
+            UIController.instance.FadeOut();
+        }
+        if (dialogues[currentDialogueIndex - 1].shouldDisableNPCAfterDialogue)
+            {
+                PlayerController.instance.talkingWithNPC.gameObject.SetActive(false);
+            }
         // if (dialogues[currentDialogueIndex - 1].shouldGiveItem)
         // {
         //     UIController.instance.inventory.AddItem(dialogues[currentDialogueIndex - 1].itemto);

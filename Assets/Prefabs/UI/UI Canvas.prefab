@@ -472,7 +472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6878733438806514623
 RectTransform:
   m_ObjectHideFlags: 0
@@ -514,7 +514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -850,7 +850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.69166076, g: 0.9339623, b: 0.91036826, a: 0.6117647}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1597,7 +1597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1390965190518039127
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1640,7 +1640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.7311321, g: 1, b: 0.95540994, a: 0.79607844}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2921,7 +2921,7 @@ MonoBehaviour:
   isPaused: 0
   questPanel: {fileID: 8092154710576838904}
   isQuestMenuOpen: 0
-  inventory: {fileID: 0}
+  inventory: {fileID: 8709640941199170335}
 --- !u!114 &8709640941199170335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2957,6 +2957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allQuests:
   - {fileID: 11400000, guid: b1e4b7d85ecc543de8bb5969c1b4fae8, type: 2}
+  - {fileID: 11400000, guid: 437329a3e6bd64be199b9bdba3662ade, type: 2}
   activeQuests: []
   questTextUIContainer: {fileID: 3568045375242156628}
   textPrefab: {fileID: 345442793540837593, guid: 6e58f910471be46c5aeb58e7c9e286dd, type: 3}

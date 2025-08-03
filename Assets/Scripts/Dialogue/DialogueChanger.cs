@@ -6,6 +6,7 @@ public class DialogueChanger : MonoBehaviour
 {
     public bool shouldTalkImmediately = false;
     public DialogueSO[] dialogues;
+    public string npcName;
     public bool shouldChangeTheDialogueComponentInAnNPC = false;
     void OnEnable()
     {
@@ -21,7 +22,7 @@ public class DialogueChanger : MonoBehaviour
         
         if(shouldChangeTheDialogueComponentInAnNPC)
         {
-            GameManager.instance.FindNPC("Liora").dialogueData = dialogues;
+            GameManager.instance.FindNPC(npcName).dialogueData = dialogues;
         }
     }
 }

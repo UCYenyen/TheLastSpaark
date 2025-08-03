@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 public class UIController : MonoBehaviour
 {
     public static UIController instance;
@@ -85,6 +86,16 @@ public class UIController : MonoBehaviour
             takeDamagePanel.alpha = 0f;
         }
     }
+    public void InstantFadeInFadeOut()
+    {
+        StartCoroutine(FadeInOut());
+    }
+    IEnumerator FadeInOut()
+    {
+        FadeIn();
+        yield return new WaitForSeconds(1f);
+        FadeOut();
+    }
     public void UpdateHealthUI(int currentHealth, int maxHealth)
     {
         for (int i = 0; i < hearts.Length; i++)
@@ -103,6 +114,7 @@ public class UIController : MonoBehaviour
     {
         if (fadeIn)
         {
+            fadePanel.gameObject.SetActive(true);
             if (fadePanel.alpha < 1f)
             {
                 fadePanel.alpha += Time.deltaTime;
