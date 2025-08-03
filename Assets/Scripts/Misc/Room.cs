@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour
 {
+    public string roomName;
     public GameObject roomCamera;
     public ParticleSystem roomParticle;
     public Tilemap roomBurningTile;

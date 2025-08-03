@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72223b3a58e634199bdcf58306e00ddc, type: 3}
+  m_Name: LioraQuestCompleteDialogue
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - "Obormu\u2026 itu bukan sekadar cahaya. Itu bisa menggerakkan orang."
+  shouldUseFadeOut: 0
+  shouldUseFadeIn: 0
+  isCutSceneDialogue: 0
+  shouldPlayCutscene: 0
+  shouldContinueCutscene: 0
+  shouldLoadScene: 0
+  sceneToLoad: 
+  speakerData: {fileID: 11400000, guid: 8b4815f76f8704ffc877af206b48c0f6, type: 2}
+  shouldGiveItem: 0
+  shouldFollowPlayerAfterDialogue: 0
+  shouldDisableNPCAfterDialogue: 0
+  shouldGiveQuest: 0
+  shouldCompleteQuest: 1
+  questToGive: {fileID: 11400000, guid: b1e4b7d85ecc543de8bb5969c1b4fae8, type: 2}

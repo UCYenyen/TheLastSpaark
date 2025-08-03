@@ -100,7 +100,7 @@ MonoBehaviour:
   tilesBurnRange: 3
   maxTorchLight: 100
   currentTorchLight: 100
-  torchDecayRate: 1
+  torchDecayRate: 2.5
   torchLight: {fileID: 9181453243711260036}
   burningTile: {fileID: 11400000, guid: 1ab9833a4c1fc4b6e827603ebf3d0bb6, type: 2}
   burnDuration: 2

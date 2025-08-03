@@ -55,6 +55,7 @@ public class NPC : MonoBehaviour
     }
     void Update()
     {
+        CheckWhichQuestToComplete();
         freezeMeterFillAmount.fillAmount = currentFreezeMeter / maxFreezeMeter;
 
         if (!isFrozen)
@@ -117,8 +118,27 @@ public class NPC : MonoBehaviour
             DialogueController.instance.SetDialogues(dialogueData);
             DialogueController.instance.ShowDialogue();
         }
-       
-        
+    }
+    void CheckWhichQuestToComplete()
+    {
+        if (characterData.characterName == "Liora")
+        {
+            CheckLioraQuest();
+        }
+    }
+    void CheckLioraQuest()
+    {
+        if (isQuestNPC && questData != null)
+        {
+            if (QuestController.instance.activeQuests.Contains(questData) && questData.isQuestCompleted == false)
+            {
+                // Logic to handle quest interaction
+                if (PlayerController.instance.currentRoom.roomName == questData.destination && Vector2.Distance(PlayerController.instance.transform.position, transform.position) <= 1f)
+                {
+                    QuestController.instance.CompleteQuest(questData);
+                }
+            }
+        }
     }
 
     void FixedUpdate()
@@ -130,8 +150,15 @@ public class NPC : MonoBehaviour
 
             if (Vector2.Distance(playerPosition, npcPosition) > 1f)
             {
-                transform.position = Vector2.MoveTowards(npcPosition, playerPosition, 2.25f * Time.fixedDeltaTime);
-                anim.SetBool("isWalking", true);
+                if (Vector2.Distance(playerPosition, npcPosition) < 5f)
+                {
+                    transform.position = Vector2.MoveTowards(npcPosition, playerPosition, 2.25f * Time.fixedDeltaTime);
+                    anim.SetBool("isWalking", true);
+                }
+                else
+                {
+                     anim.SetBool("isWalking", false);
+                }
             }
             else
             {

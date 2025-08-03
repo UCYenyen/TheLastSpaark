@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Quest", menuName = "Quest")]
+[CreateAssetMenu(fileName = "New Quest", menuName = "ScriptableObjects/Quest")]
 public class QuestSO : ScriptableObject
 {
     public bool isQuestCompleted = false;

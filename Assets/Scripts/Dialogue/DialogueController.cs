@@ -278,5 +278,21 @@ public class DialogueController : MonoBehaviour
                 SceneManager.LoadScene(dialogues[currentDialogueIndex - 1].sceneToLoad);
             }
         }
+        if (dialogues[currentDialogueIndex - 1].shouldDisableNPCAfterDialogue)
+        {
+            PlayerController.instance.talkingWithNPC.gameObject.SetActive(false);
+        }
+        // if (dialogues[currentDialogueIndex - 1].shouldGiveItem)
+        // {
+        //     UIController.instance.inventory.AddItem(dialogues[currentDialogueIndex - 1].itemto);
+        // }
+        if (dialogues[currentDialogueIndex - 1].shouldGiveQuest)
+        {
+            QuestController.instance.AddQuest(dialogues[currentDialogueIndex - 1].questToGive);
+        }
+        if (dialogues[currentDialogueIndex - 1].shouldCompleteQuest)
+        {
+            QuestController.instance.CompleteQuest(dialogues[currentDialogueIndex - 1].questToGive);
+        }
     }
 }

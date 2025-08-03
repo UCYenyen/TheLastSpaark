@@ -32,6 +32,8 @@ public class UIController : MonoBehaviour
     [Header("Quest Menu")]
     public GameObject questPanel;
     [HideInInspector] public bool isQuestMenuOpen = false;
+    [Header("Inventory")]
+    public Inventory inventory;
     void Awake()
     {
         if (instance == null)

@@ -24,4 +24,9 @@ public class DialogueSO : ScriptableObject
     public bool shouldGiveItem = false;
     public bool shouldFollowPlayerAfterDialogue = false;
     public bool shouldDisableNPCAfterDialogue = false;
+
+    [Header("Quest Settings")]
+    public bool shouldGiveQuest = false;
+    public bool shouldCompleteQuest = false;
+    public QuestSO questToGive;
 }
