@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LioraQuest
   m_EditorClassIdentifier: 
   isQuestCompleted: 0
-  questName: 
+  questName: -> Antarkan Liora Ke Desa Ciputra
   demandsItem: 0
   itemToFind: {fileID: 0}
-  escortQuest: 0
-  destination: 
+  escortQuest: 1
+  destination: Desa Ciputra

@@ -24,6 +24,10 @@ public class DialogueSO : ScriptableObject
     public bool shouldGiveItem = false;
     public bool shouldFollowPlayerAfterDialogue = false;
     public bool shouldDisableNPCAfterDialogue = false;
+    public bool shouldChangeDialogueAfterThis = false;
+
+    [Header("Dialogue Changer")]
+    public GameObject dialogueChangerToSpawn;
 
     [Header("Quest Settings")]
     public bool shouldGiveQuest = false;

@@ -35,6 +35,9 @@ public class NPC : MonoBehaviour
     [Header("Quest Settings")]
     public bool isQuestNPC = false;
     public QuestSO questData;
+
+    [Header("Dialogue Changer")]
+    public DialogueChanger dialogueChanger;
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -133,9 +136,23 @@ public class NPC : MonoBehaviour
             if (QuestController.instance.activeQuests.Contains(questData) && questData.isQuestCompleted == false)
             {
                 // Logic to handle quest interaction
-                if (PlayerController.instance.currentRoom.roomName == questData.destination && Vector2.Distance(PlayerController.instance.transform.position, transform.position) <= 1f)
+                if (PlayerController.instance.currentRoom != null)
                 {
-                    QuestController.instance.CompleteQuest(questData);
+                     if (PlayerController.instance.currentRoom.roomName == questData.destination)
+                    {
+                        if (Vector2.Distance(PlayerController.instance.transform.position, transform.position) <= 1f)
+                        {
+                            QuestController.instance.CompleteQuest(questData);
+                            isFollowingPlayer = false;
+                            shouldFollowPlayer = false;
+                            anim.SetBool("isWalking", false);
+
+                            if (dialogueChanger != null)
+                            {
+                                dialogueChanger.gameObject.SetActive(true);
+                            }
+                        }
+                    }
                 }
             }
         }

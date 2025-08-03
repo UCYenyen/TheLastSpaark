@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Playables;
-using Unity.VisualScripting;
 
 public class DialogueController : MonoBehaviour
 {
@@ -184,7 +183,10 @@ public class DialogueController : MonoBehaviour
 
     public void ShowDialogue()
     {
-        if(dialogues[0].shouldUseFadeIn)
+        PlayerController.instance.isInteracting = true;
+        PlayerController.instance.ResetVelocity();
+
+        if (dialogues[0].shouldUseFadeIn)
         {
             FadeIn();
         }
@@ -293,6 +295,10 @@ public class DialogueController : MonoBehaviour
         if (dialogues[currentDialogueIndex - 1].shouldCompleteQuest)
         {
             QuestController.instance.CompleteQuest(dialogues[currentDialogueIndex - 1].questToGive);
+        }
+        if (dialogues[currentDialogueIndex - 1].shouldChangeDialogueAfterThis)
+        {
+            Instantiate(dialogues[currentDialogueIndex - 1].dialogueChangerToSpawn);
         }
     }
 }

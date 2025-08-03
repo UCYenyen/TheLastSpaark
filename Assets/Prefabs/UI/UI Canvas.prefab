@@ -2921,6 +2921,7 @@ MonoBehaviour:
   isPaused: 0
   questPanel: {fileID: 8092154710576838904}
   isQuestMenuOpen: 0
+  inventory: {fileID: 0}
 --- !u!114 &8709640941199170335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2954,6 +2955,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a489f91e978934ec7b9df137e6a94e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allQuests:
+  - {fileID: 11400000, guid: b1e4b7d85ecc543de8bb5969c1b4fae8, type: 2}
   activeQuests: []
   questTextUIContainer: {fileID: 3568045375242156628}
   textPrefab: {fileID: 345442793540837593, guid: 6e58f910471be46c5aeb58e7c9e286dd, type: 3}

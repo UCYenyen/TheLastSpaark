@@ -26434,6 +26434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee40b7fce4f7d46b5ad359da8dd8d1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomName: Hutan Terakhir
   roomCamera: {fileID: 464324961}
   roomParticle: {fileID: 1769798652}
   roomBurningTile: {fileID: 1192286335}
@@ -38331,6 +38332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee40b7fce4f7d46b5ad359da8dd8d1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomName: Desa Ciputra
   roomCamera: {fileID: 1336742077}
   roomParticle: {fileID: 1084828063}
   roomBurningTile: {fileID: 260925357}
@@ -40017,6 +40019,54 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &741593428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 741593429}
+  - component: {fileID: 741593430}
+  m_Layer: 0
+  m_Name: DialogChanger1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &741593429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741593428}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5702659178352267493}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &741593430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741593428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bd3aeef39254a33846015baf375add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldTalkImmediately: 1
+  dialogues:
+  - {fileID: 11400000, guid: d24f3a927a502499f90cf91c57273661, type: 2}
+  shouldChangeTheDialogueComponentInAnNPC: 1
 --- !u!1 &749571264
 GameObject:
   m_ObjectHideFlags: 0
@@ -83377,6 +83427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee40b7fce4f7d46b5ad359da8dd8d1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomName: 
   roomCamera: {fileID: 1218195386}
   roomParticle: {fileID: 1474845333}
   roomBurningTile: {fileID: 191991252}
@@ -95376,6 +95427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee40b7fce4f7d46b5ad359da8dd8d1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomName: 
   roomCamera: {fileID: 1694611487}
   roomParticle: {fileID: 1736767509}
   roomBurningTile: {fileID: 525150993}
@@ -96465,6 +96517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee40b7fce4f7d46b5ad359da8dd8d1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomName: Hutan Pejalanan
   roomCamera: {fileID: 1142847980}
   roomParticle: {fileID: 594172216}
   roomBurningTile: {fileID: 1229054765}
@@ -98293,6 +98346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee40b7fce4f7d46b5ad359da8dd8d1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomName: Labirin Sumur
   roomCamera: {fileID: 848671882}
   roomParticle: {fileID: 1846065586}
   roomBurningTile: {fileID: 565423755}
@@ -100910,6 +100964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee40b7fce4f7d46b5ad359da8dd8d1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomName: Desa Ciputra
   roomCamera: {fileID: 1156494701}
   roomParticle: {fileID: 845856877}
   roomBurningTile: {fileID: 779676487}
@@ -117224,6 +117279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074808897c2894ab3a90a76f6941f0f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcs: []
 --- !u!4 &1832620672
 Transform:
   m_ObjectHideFlags: 0
@@ -124522,6 +124578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee40b7fce4f7d46b5ad359da8dd8d1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomName: Perkemahan
   roomCamera: {fileID: 647686641}
   roomParticle: {fileID: 144704406}
   roomBurningTile: {fileID: 1603039886}
@@ -125393,6 +125450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee40b7fce4f7d46b5ad359da8dd8d1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomName: Hutan Permulaan
   roomCamera: {fileID: 449793937}
   roomParticle: {fileID: 870473108}
   roomBurningTile: {fileID: 1354869473}
@@ -144371,6 +144429,7 @@ Transform:
   - {fileID: 4145063130492324032}
   - {fileID: 5478845970000863745}
   - {fileID: 1467685036}
+  - {fileID: 741593429}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5979774164658552413
@@ -144480,8 +144539,11 @@ MonoBehaviour:
   dialogueData:
   - {fileID: 11400000, guid: 868b109ef646b4e66abb33073e0ca0a8, type: 2}
   - {fileID: 11400000, guid: 6b472673b99184acfad8e702f224fcf1, type: 2}
-  isQuestNPC: 0
-  questData: {fileID: 0}
+  isQuestNPC: 1
+  questData: {fileID: 11400000, guid: b1e4b7d85ecc543de8bb5969c1b4fae8, type: 2}
+  dialogueChanger:
+  - {fileID: 741593428}
+  dialogueChangeIndex: 0
 --- !u!95 &7209667134174542768
 Animator:
   serializedVersion: 5

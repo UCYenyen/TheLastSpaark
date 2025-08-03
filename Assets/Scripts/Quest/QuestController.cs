@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class QuestController : MonoBehaviour
 {
     public static QuestController instance;
+
+    public QuestSO[] allQuests;
 
     [Header("Quest Data")]
     public List<QuestSO> activeQuests = new List<QuestSO>();
@@ -25,6 +26,24 @@ public class QuestController : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+    void Start()
+    {
+        ResetAllQuests();
+    }
+    private void ResetAllQuests()
+    {
+        activeQuests.Clear();
+        foreach (TMP_Text questTextUI in questTextUIList)
+        {
+            Destroy(questTextUI.gameObject);
+        }
+        questTextUIList.Clear();
+
+        foreach (QuestSO quest in allQuests)
+        {
+            quest.isQuestCompleted = false;
         }
     }
     public void AddQuest(QuestSO newQuest)

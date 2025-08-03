@@ -5,7 +5,8 @@ using UnityEngine.Tilemaps;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
+    [Header("NPCS")]
+    public NPC[] npcs;
     void Awake()
     {
         if (instance == null)
@@ -28,6 +29,17 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+    }
+    public NPC FindNPC(string npcName)
+    {
+        foreach (NPC npc in npcs)
+        {
+            if (npc.characterData.characterName == npcName)
+            {
+                return npc;
+            }
+        }
+        return null;
     }
     public void ResetTile(Tilemap tilemap, Vector3Int cellPos, float delay)
     {

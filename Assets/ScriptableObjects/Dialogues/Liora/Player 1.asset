@@ -25,3 +25,8 @@ MonoBehaviour:
   shouldGiveItem: 0
   shouldFollowPlayerAfterDialogue: 1
   shouldDisableNPCAfterDialogue: 0
+  shouldChangeDialogueAfterThis: 0
+  dialogueChangerToSpawn: {fileID: 0}
+  shouldGiveQuest: 1
+  shouldCompleteQuest: 0
+  questToGive: {fileID: 11400000, guid: b1e4b7d85ecc543de8bb5969c1b4fae8, type: 2}

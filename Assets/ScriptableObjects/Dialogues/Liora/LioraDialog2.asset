@@ -10,10 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72223b3a58e634199bdcf58306e00ddc, type: 3}
-  m_Name: LioraQuestCompleteDialogue
+  m_Name: LioraDialog2
   m_EditorClassIdentifier: 
   dialogueLines:
-  - "Obormu\u2026 itu bukan sekadar cahaya. Itu bisa menggerakkan orang."
+  - "Obormu\u2026"
+  - itu bukan sekadar cahaya. Itu bisa menggerakkan orang.
+  - Banyak yang membeku karena tak ada yang mau menyinari mereka lebih dulu.
+  - Tapi...
+  - Kau berbeda
   shouldUseFadeOut: 0
   shouldUseFadeIn: 0
   isCutSceneDialogue: 0
@@ -25,6 +29,8 @@ MonoBehaviour:
   shouldGiveItem: 0
   shouldFollowPlayerAfterDialogue: 0
   shouldDisableNPCAfterDialogue: 0
+  shouldChangeDialogueAfterThis: 1
+  dialogueChangerToSpawn: {fileID: 4344466507172091514, guid: fd73fde8468644d3b87e2a14e3560c5e, type: 3}
   shouldGiveQuest: 0
   shouldCompleteQuest: 1
   questToGive: {fileID: 11400000, guid: b1e4b7d85ecc543de8bb5969c1b4fae8, type: 2}

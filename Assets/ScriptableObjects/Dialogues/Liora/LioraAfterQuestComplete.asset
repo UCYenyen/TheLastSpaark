@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72223b3a58e634199bdcf58306e00ddc, type: 3}
   m_Name: LioraAfterQuestComplete
   m_EditorClassIdentifier: 
-  dialogueLines: []
+  dialogueLines:
+  - "Obormu bisa menyinari orang lain\u2026 "
+  - tapi cahayanya takkan kembali dengan sendirinya
   shouldUseFadeOut: 0
   shouldUseFadeIn: 0
   isCutSceneDialogue: 0
@@ -20,10 +22,12 @@ MonoBehaviour:
   shouldContinueCutscene: 0
   shouldLoadScene: 0
   sceneToLoad: 
-  speakerData: {fileID: 0}
+  speakerData: {fileID: 11400000, guid: 8b4815f76f8704ffc877af206b48c0f6, type: 2}
   shouldGiveItem: 0
   shouldFollowPlayerAfterDialogue: 0
   shouldDisableNPCAfterDialogue: 0
+  shouldChangeDialogueAfterThis: 0
+  dialogueChangerToSpawn: {fileID: 0}
   shouldGiveQuest: 0
   shouldCompleteQuest: 0
   questToGive: {fileID: 0}
