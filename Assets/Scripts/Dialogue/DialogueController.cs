@@ -217,6 +217,7 @@ public class DialogueController : MonoBehaviour
         foreach (char character in text)
         {
             dialogueText.text += character;
+            PlayerController.instance.playerAudio.PlaySFX(56);
             yield return new WaitForSeconds(typewriterSpeed);
         }
 
@@ -238,6 +239,7 @@ public class DialogueController : MonoBehaviour
             currentDialogueIndex++;
             currentInnerDialogueIndex = 0;
         }
+        PlayerController.instance.playerAudio.PlaySFX(55);
 
         nextText.SetActive(false);
 
@@ -290,9 +292,15 @@ public class DialogueController : MonoBehaviour
             UIController.instance.FadeOut();
         }
         if (dialogues[currentDialogueIndex - 1].shouldDisableNPCAfterDialogue)
-            {
-                PlayerController.instance.talkingWithNPC.gameObject.SetActive(false);
-            }
+        {
+            PlayerController.instance.talkingWithNPC.gameObject.SetActive(false);
+        }
+
+        if (dialogues[currentDialogueIndex - 1].shouldMovePlayerBackAfterDialogue)
+        {
+            PlayerController.instance.transform.position += Vector3.left * 2f;
+            PlayerController.instance.ResetVelocity();
+        }
         // if (dialogues[currentDialogueIndex - 1].shouldGiveItem)
         // {
         //     UIController.instance.inventory.AddItem(dialogues[currentDialogueIndex - 1].itemto);
@@ -307,7 +315,30 @@ public class DialogueController : MonoBehaviour
         }
         if (dialogues[currentDialogueIndex - 1].shouldChangeDialogueAfterThis)
         {
-            Instantiate(dialogues[currentDialogueIndex - 1].dialogueChangerToSpawn);
+            if (dialogues[currentDialogueIndex - 1].changeDialogueWithCondition)
+            {
+                if (dialogues[currentDialogueIndex - 1].speakerData.characterName == "Tezies")
+                {
+                    if (UIController.instance.inventory.CheckIfItemExists(dialogues[currentDialogueIndex - 1].questToGive.itemToFind))
+                    {
+                        Instantiate(dialogues[currentDialogueIndex - 1].dialogueChangerToSpawn);
+                        UIController.instance.inventory.removeItem(dialogues[currentDialogueIndex - 1].questToGive.itemToFind);
+                    }
+                }
+                else if (dialogues[currentDialogueIndex - 1].speakerData.characterName == "Alya")
+                {
+                    if (UIController.instance.inventory.CheckIfItemExists(dialogues[currentDialogueIndex - 1].questToGive.itemToFind))
+                    {
+                        Instantiate(dialogues[currentDialogueIndex - 1].dialogueChangerToSpawn);
+                        UIController.instance.inventory.removeItem(dialogues[currentDialogueIndex - 1].questToGive.itemToFind);
+                    }
+                }
+            }
+            else
+            {
+                Instantiate(dialogues[currentDialogueIndex - 1].dialogueChangerToSpawn);
+            }
+            
         }
     }
 }

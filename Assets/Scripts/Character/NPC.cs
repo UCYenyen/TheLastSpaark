@@ -6,7 +6,13 @@ public class NPC : MonoBehaviour
 {
     [Header("Components")]
     public Animator anim;
+    public AudioManager audioManager;
     Vector2 moveDir;
+
+    [Header("Line of Sight")]
+    public bool isLineOfSightNPC = false;
+    public bool hasRecievedRequiredItemToPass = false;
+    public Item requiredItemToPass;
 
     [Header("NPC Settings")]
     public CharacterSO characterData;
@@ -50,9 +56,23 @@ public class NPC : MonoBehaviour
         {
             if (canInteractWithPlayer)
             {
-                isInInteractArea = true;
-                npcNameGameObject.SetActive(true);
-                pressEToInteractGameObject.SetActive(true);
+                if (isLineOfSightNPC == false)
+                {
+                    isInInteractArea = true;
+                    npcNameGameObject.SetActive(true);
+                    pressEToInteractGameObject.SetActive(true);
+                }
+                else
+                {
+                    if (hasRecievedRequiredItemToPass == false)
+                    {
+                        isInInteractArea = true;
+                        npcNameGameObject.SetActive(true);
+                        PlayerController.instance.ResetVelocity();
+                        Interact();
+                    }
+                }
+                
             }
         }
     }
@@ -125,6 +145,7 @@ public class NPC : MonoBehaviour
         }
         else
         {
+            audioManager.PlaySFX(0);
             PlayerController.instance.talkingWithNPC = this;
             UpdateNPCName();
             DialogueController.instance.SetDialogues(dialogueData);
@@ -200,7 +221,10 @@ public class NPC : MonoBehaviour
             }
         }
     }
-
+    public void PlayWalkSFX()
+    {
+        audioManager.PlayHumanWalkSFX();
+    }
     void FixedUpdate()
     {
         if (isFollowingPlayer && isFrozen == false)

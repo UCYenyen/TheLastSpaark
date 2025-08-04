@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Room currentRoom;
 
     [Header("Player References")]
+    public AudioManager playerAudio;
     public PlayerHealthController healthController;
     [HideInInspector] public bool isInteracting = false;
     public Rigidbody2D rb;
@@ -62,14 +63,19 @@ public class PlayerController : MonoBehaviour
         {
             if (isInteracting == false)
             {
-                 if (currentFreezeMeter < 100f)
+                if (currentFreezeMeter < 100f)
                 {
                     currentFreezeMeter += freezeDecayRate * Time.deltaTime;
                     currentFreezeMeter = Mathf.Clamp(currentFreezeMeter, 0f, maxFreezeMeter);
                     UIController.instance.freezeMeterSlider.fillAmount = currentFreezeMeter / maxFreezeMeter;
+                    if (currentFreezeMeter > 50f)
+                    {
+                        UIController.instance.aboutToFreezePanel.SetActive(true);
+                    }
                 }
                 else
                 {
+                    UIController.instance.aboutToFreezePanel.SetActive(false);
                     isFrozen = true;
                 }
             }
@@ -115,12 +121,17 @@ public class PlayerController : MonoBehaviour
 
             rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
 
+
             anim.SetFloat("moveX", moveDirection.x);
             anim.SetFloat("moveY", moveDirection.y);
             anim.SetFloat("lastMoveX", lastMoveDirection.x);
             anim.SetFloat("lastMoveY", lastMoveDirection.y);
             anim.SetBool("isWalking", moveDirection != Vector2.zero);
         }
+    }
+    public void PlayWalkSFX()
+    {
+        playerAudio.PlayHumanWalkSFX();
     }
     void Dash()
     {
@@ -131,6 +142,8 @@ public class PlayerController : MonoBehaviour
 
             dashCooldown = startDashCooldown;
             isDashing = true;
+            playerAudio.StopAllSFX();
+            playerAudio.PlaySFX(Random.Range(21,23));
         }
     }
     void CalculateDash()
@@ -161,6 +174,8 @@ public class PlayerController : MonoBehaviour
     public void ResetVelocity()
     {
         rb.velocity = Vector2.zero;
+        isDashing = false;
+        dashDuration = 0;
         anim.SetBool("isWalking", false);
     }
 

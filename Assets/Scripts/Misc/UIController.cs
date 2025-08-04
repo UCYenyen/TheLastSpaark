@@ -5,12 +5,14 @@ using System.Collections;
 public class UIController : MonoBehaviour
 {
     public static UIController instance;
+
     [Header("Transition")]
     public CanvasGroup fadePanel;
     bool fadeIn = false;
     bool fadeOut = false;
 
     [Header("TakeDamageEffect")]
+    public GameObject aboutToFreezePanel;
     public CanvasGroup takeDamagePanel;
     public float takeDamageFadeTime = 0.5f;
     private float takeDamageTimer = 0f;

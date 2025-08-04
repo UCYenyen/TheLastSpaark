@@ -35,6 +35,17 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+    public bool CheckIfItemExists(Item itemToCheck)
+    {
+        for (int i = 0; i < ownedItems.Length; i++)
+        {
+            if (ownedItems[i] == itemToCheck)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     public void UseItem(int index)
     {
         if (index < 0 || index >= ownedItems.Length || ownedItems[index] == null)
@@ -46,7 +57,7 @@ public class Inventory : MonoBehaviour
         if (ownedItems[index].isConsumable)
         {
             // Apply item effects here
-            
+
         }
     }
     public void removeItem(Item itemToRemove)
@@ -72,6 +83,5 @@ public class Inventory : MonoBehaviour
                 return;
             }
         }
-        Debug.Log("Inventory is full!");
     }
 }

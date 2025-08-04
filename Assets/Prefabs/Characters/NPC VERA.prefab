@@ -150,6 +150,7 @@ MonoBehaviour:
   shouldTalkImmediately: 1
   dialogues:
   - {fileID: 11400000, guid: d24f3a927a502499f90cf91c57273661, type: 2}
+  npcName: 
   shouldChangeTheDialogueComponentInAnNPC: 1
 --- !u!1 &3299599222133957206
 GameObject:
@@ -273,6 +274,7 @@ MonoBehaviour:
   anim: {fileID: 9003058777919838626}
   targetNPC: {fileID: 4076287706213962763}
   isPlayerFrozenCrystal: 0
+  audioManager: {fileID: 850579094260515418}
 --- !u!1 &3513363282067456799
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,6 +863,7 @@ Transform:
   - {fileID: 4969270443818151687}
   - {fileID: 3835276539706387261}
   - {fileID: 7396154845569123870}
+  - {fileID: 1176871710762838407}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4076287706213962763
@@ -876,10 +879,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 3548973574023899654}
+  audioManager: {fileID: 850579094260515418}
+  isLineOfSightNPC: 0
+  hasRecievedRequiredItemToPass: 0
+  requiredItemToPass: {fileID: 0}
   characterData: {fileID: 11400000, guid: 7a6cc9a6fbdda450181e66f925492c39, type: 2}
   canInteractWithPlayer: 1
   isInInteractArea: 0
   shouldFollowPlayer: 0
+  isFollowingPlayer: 0
+  shouldFollowOtherNPC: 0
+  canFollowOtherNPC: 0
+  isFollowingOtherNPC: 0
+  otherNPCToFollow: {fileID: 0}
   freezeMeterFillAmount: {fileID: 2416126235916187156}
   freezeAnim: {fileID: 8632925709465913467}
   isNearLightSource: 0
@@ -968,3 +980,80 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1001 &5283685752374441837
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5853660138173076214}
+    m_Modifications:
+    - target: {fileID: 4800469001301374263, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: isPlayerAudio
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8631980943532966122, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+--- !u!114 &850579094260515418 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4800469001301374263, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+  m_PrefabInstance: {fileID: 5283685752374441837}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d51dcd583f334a549c83660028f79f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1176871710762838407 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+  m_PrefabInstance: {fileID: 5283685752374441837}
+  m_PrefabAsset: {fileID: 0}
