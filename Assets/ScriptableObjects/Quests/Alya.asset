@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edec7b5e13f4b4485bb149cdce5e4870, type: 3}
   m_Name: Alya
   m_EditorClassIdentifier: 
-  isQuestCompleted: 0
+  isQuestCompleted: 1
   questName: -> Temukan lonceng Alya
   demandsItem: 1
-  itemToFind: {fileID: 0}
+  itemToFind: {fileID: 3068920203863524374, guid: 12a09d01b785546079fc1d92ad28d001, type: 3}
   escortQuest: 0
   destination: 

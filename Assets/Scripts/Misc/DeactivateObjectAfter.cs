@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DeactivateObjectAfter : MonoBehaviour
 {
+    public bool shouldGiveDamage;
     public float statDeactivateTime = 2f; // Time in seconds before the object is deactivated
     private float deactivateTimer = 2;
 
@@ -22,6 +23,16 @@ public class DeactivateObjectAfter : MonoBehaviour
         if (deactivateTimer <= 0f)
         {
             gameObject.SetActive(false);
+        }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (shouldGiveDamage)
+        {
+            if (collision.CompareTag("Enemy"))
+            {
+                BossController.instance.bossHealthController.TakeDamage(1);
+            }
         }
     }
 }

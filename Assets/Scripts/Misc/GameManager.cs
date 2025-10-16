@@ -5,14 +5,15 @@ using UnityEngine.Tilemaps;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public bool isMuted = false;
     [Header("NPCS")]
     public NPC[] npcs;
+    public DialogueSO nenekElyaDialogue;
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -22,7 +23,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (nenekElyaDialogue == null)
+        {
+            
+        nenekElyaDialogue.hasGivenItem = false;
+        }
     }
 
     // Update is called once per frame

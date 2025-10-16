@@ -20,9 +20,7 @@ public class Item : MonoBehaviour
     public bool isConsumable = false;
 
     [Header("Item Effects")]
-    public float healthRestoreAmount = 0f;
-    public float manaRestoreAmount = 0f;
-    public float staminaRestoreAmount = 0f;
+    public int healthRestoreAmount = 0;
 
     void OnTriggerEnter2D(Collider2D collision)
     {

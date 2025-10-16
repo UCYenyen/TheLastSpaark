@@ -29,14 +29,17 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayHumanWalkSFX()
     {
+        if (GameManager.instance.isMuted) return;
         PlaySFX(Random.Range(4, 7));
     }
     public void PlaySFX(int index)
     {
+        if (GameManager.instance.isMuted) return;
         sfxSource[index].Play();
     }
     public void PlayMusic(int index)
     {
+        if (GameManager.instance.isMuted) return;
         foreach (AudioSource a in musicSource)
         {
             a.Stop();

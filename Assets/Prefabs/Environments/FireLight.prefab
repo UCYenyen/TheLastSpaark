@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3461238091692456164}
   - component: {fileID: 7702338004614952122}
   - component: {fileID: 9124511084333523297}
+  - component: {fileID: 6024999070647207158}
   m_Layer: 0
   m_Name: FireLight
   m_TagString: Untagged
@@ -72,7 +73,7 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0.63
+  m_PointLightInnerRadius: 1.8346493
   m_PointLightOuterRadius: 2.32
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
@@ -117,4 +118,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e462e0752661b4cc9a80fbcb3fd99cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldGiveDamage: 1
   statDeactivateTime: 2
+--- !u!58 &6024999070647207158
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4107945764792122437}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.6431598

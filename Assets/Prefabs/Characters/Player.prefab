@@ -104,6 +104,7 @@ MonoBehaviour:
   torchLight: {fileID: 9181453243711260036}
   burningTile: {fileID: 11400000, guid: 1ab9833a4c1fc4b6e827603ebf3d0bb6, type: 2}
   burnDuration: 2
+  lightsourceGiver: {fileID: 7125094182773361765}
 --- !u!95 &4816473156039625130
 Animator:
   serializedVersion: 5
@@ -585,9 +586,9 @@ MonoBehaviour:
   anim: {fileID: 1566781360513868515}
   moveDirection: {x: 0, y: 0}
   lastMoveDirection: {x: 0, y: 0}
-  dashSpeed: 3
+  dashSpeed: 4
   startDashDuration: 0.2
-  startDashCooldown: 1
+  startDashCooldown: 1.5
   playerTorch: {fileID: 8888651735950938310}
   freezeCrystal: {fileID: 2677804842966365744}
   currentFreezeMeter: 0
@@ -611,6 +612,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 3
   maxHealth: 3
+  startImmunityTime: 1
+  currentImunityTime: 0
+  sr: {fileID: 6472381622078120173}
+  normalMaterial: {fileID: 2100000, guid: 0c07c265b19944d27b7aeb1eb0d04343, type: 2}
+  takeDamageMaterial: {fileID: 2100000, guid: 914bcabf7584a48bd982cba49c00d3af, type: 2}
 --- !u!1 &7995344493934173449
 GameObject:
   m_ObjectHideFlags: 0

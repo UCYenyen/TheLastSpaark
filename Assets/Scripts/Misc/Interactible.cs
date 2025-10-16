@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Interactible : MonoBehaviour
 {
@@ -42,16 +44,38 @@ public class Interactible : MonoBehaviour
     public Sprite[] newSprite;
 
     [Header("Interaction Components")]
-
+    public bool canOnlyInteractOnce = false;
+    bool hasInteracted = false;
+    public bool shouldUsePressedEToInteract = true;
     public GameObject pressEToInteractGameObject;
     bool isPlayerInRange = false;
     public QuestSO tamonQuest;
+
+    [Header("Should Change Scene On Interact")]
+    public bool shouldChangeSceneOnInteract = false;
+    public string sceneToLoad;
 
     void Update()
     {
         if (isPlayerInRange && PlayerController.instance.isInteracting == false)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && shouldUsePressedEToInteract)
+            {
+                if (canOnlyInteractOnce == false)
+                {
+                    Interact();
+                }
+                else
+                {
+                    if (hasInteracted == false)
+                    {
+                        hasInteracted = true;
+                        Interact();
+                    }
+                }
+            }
+
+            if (shouldUsePressedEToInteract == false)
             {
                 Interact();
             }
@@ -83,6 +107,7 @@ public class Interactible : MonoBehaviour
     }
     private void Interact()
     {
+        PlayerController.instance.ResetVelocity();
         if (shouldConsumeTorchToInteract)
         {
             if (PlayerController.instance.playerTorch.currentTorchLight > 0)
@@ -138,6 +163,16 @@ public class Interactible : MonoBehaviour
         {
             gameObjectToDeactivate.SetActive(false);
         }
+        if (shouldChangeSceneOnInteract)
+        {
+            StartCoroutine(ChangeScene());
+        }
+    }
+    IEnumerator ChangeScene()
+    {
+        UIController.instance.FadeOut();
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(sceneToLoad);
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -183,6 +218,7 @@ public class Interactible : MonoBehaviour
             }
             else
             {
+                
                 if (QuestController.instance.activeQuests.Contains(spesificQuestToInteract))
                 {
                     isPlayerInRange = true;
@@ -190,8 +226,16 @@ public class Interactible : MonoBehaviour
                 }
                 else
                 {
-                    isPlayerInRange = false;
-                    pressEToInteractGameObject.SetActive(false);
+                    if (spesificQuestToInteract.isQuestCompleted)
+                    {
+                        isPlayerInRange = true;
+                        pressEToInteractGameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        isPlayerInRange = false;
+                        pressEToInteractGameObject.SetActive(false);
+                    }
                 }
             }
         }

@@ -60,6 +60,7 @@ public class FreezeCrystal : MonoBehaviour
     {
         currentUnfreezeMeter = 0f;
         audioManager.PlaySFX(Random.Range(15,21));
+        PlayerController.instance.playerTorch.gameObject.SetActive(true);
 
         if (isPlayerFrozenCrystal)
         {

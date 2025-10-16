@@ -9750,6 +9750,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &594603189 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4800469001301374263, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+  m_PrefabInstance: {fileID: 1419007256}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d51dcd583f334a549c83660028f79f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &642613485
 GameObject:
   m_ObjectHideFlags: 0
@@ -10923,6 +10934,7 @@ MonoBehaviour:
   torchLight: {fileID: 717839805}
   burningTile: {fileID: 11400000, guid: 1ab9833a4c1fc4b6e827603ebf3d0bb6, type: 2}
   burnDuration: 2
+  lightsourceGiver: {fileID: 0}
 --- !u!114 &717839805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11013,7 +11025,9 @@ MonoBehaviour:
   speakerNameText: {fileID: 868284850}
   dialogueText: {fileID: 1671253592}
   nextText: {fileID: 1648021176}
-  typewriterSpeed: 0.35
+  typewriterSpeed: 0.04
+  isCutscene: 1
+  cutsceneAudioManager: {fileID: 594603189}
   cutsceneDirector: {fileID: 2059760857}
 --- !u!114 &729916768
 MonoBehaviour:
@@ -13446,6 +13460,63 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!1001 &1419007256
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414949579013988074, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8631980943532966122, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d997b2dff29a34fea9c692f89dbf0be0, type: 3}
 --- !u!1 &1457801799
 GameObject:
   m_ObjectHideFlags: 0
@@ -16787,6 +16858,52 @@ Canvas:
   m_SortingLayerID: -911528329
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1950191677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1950191679}
+  - component: {fileID: 1950191678}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1950191678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950191677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 074808897c2894ab3a90a76f6941f0f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMuted: 0
+  npcs: []
+--- !u!4 &1950191679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950191677}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2014463511
 GameObject:
   m_ObjectHideFlags: 0
@@ -17518,6 +17635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1401816108438317213}
   - component: {fileID: 4005522172032788969}
+  - component: {fileID: 4005522172032788970}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -17580,6 +17698,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4005522172032788970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766111639042464437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17712a93c0df84ca693397ea062cb2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCutscene: 1
+  characterData: {fileID: 0}
+  currentRoom: {fileID: 0}
+  playerAudio: {fileID: 0}
+  healthController: {fileID: 0}
+  isInteracting: 0
+  rb: {fileID: 0}
+  moveSpeed: 5
+  anim: {fileID: 0}
+  moveDirection: {x: 0, y: 0}
+  lastMoveDirection: {x: 0, y: 0}
+  dashSpeed: 0
+  startDashDuration: 0.2
+  startDashCooldown: 0
+  playerTorch: {fileID: 0}
+  freezeCrystal: {fileID: 0}
+  currentFreezeMeter: 0
+  maxFreezeMeter: 100
+  freezeDecayRate: 1
+  isFrozen: 0
+  isDead: 0
+  talkingWithNPC: {fileID: 0}
+  isNearlightSource: 0
 --- !u!1 &5538584341204211203
 GameObject:
   m_ObjectHideFlags: 0
@@ -17631,6 +17784,7 @@ MonoBehaviour:
   torchLight: {fileID: 6720278280962985614}
   burningTile: {fileID: 11400000, guid: 1ab9833a4c1fc4b6e827603ebf3d0bb6, type: 2}
   burnDuration: 2
+  lightsourceGiver: {fileID: 0}
 --- !u!114 &6720278280962985614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17759,3 +17913,5 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2059760856}
+  - {fileID: 1419007256}
+  - {fileID: 1950191679}

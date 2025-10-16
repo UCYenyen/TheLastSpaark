@@ -13,6 +13,7 @@ public class Torch : MonoBehaviour
     public Light2D torchLight;
     public AnimatedTile burningTile;
     public float burnDuration;
+    public LightsourceGiver lightsourceGiver;
     void Start()
     {
         currentTorchLight = maxTorchLight;

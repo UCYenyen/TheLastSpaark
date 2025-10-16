@@ -29,6 +29,8 @@ public class DialogueSO : ScriptableObject
     public bool shouldChangeDialogueAfterThis = false;
     public bool changeDialogueWithCondition = false;
     public bool shouldMovePlayerBackAfterDialogue = false;
+    public Item itemToGive;
+    public bool hasGivenItem = false;
 
     [Header("Dialogue Changer")]
     public GameObject dialogueChangerToSpawn;

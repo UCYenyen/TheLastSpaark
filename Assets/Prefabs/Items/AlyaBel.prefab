@@ -49,12 +49,12 @@ MonoBehaviour:
   canBePickedUp: 1
   isQuestItem: 0
   isInRange: 0
-  inRangeSprite: {fileID: 1549020348, guid: 39ef75883a24348c5b32d233b4a1cec3, type: 3}
-  outOfRangeSprite: {fileID: 1549020348, guid: 39ef75883a24348c5b32d233b4a1cec3, type: 3}
+  inRangeSprite: {fileID: 21300000, guid: 259a2b33fd65b484d9e5926cd5ea074c, type: 3}
+  outOfRangeSprite: {fileID: 21300000, guid: d133e2fd567864e2c81256bff7897a4f, type: 3}
   itemSpriteRenderer: {fileID: 6741849795518926264}
   itemName: AlyaBell
   itemDescription: lonceng alya
-  itemIcon: {fileID: 1549020348, guid: 39ef75883a24348c5b32d233b4a1cec3, type: 3}
+  itemIcon: {fileID: 21300000, guid: d133e2fd567864e2c81256bff7897a4f, type: 3}
   isConsumable: 0
   healthRestoreAmount: 0
   manaRestoreAmount: 0
@@ -135,7 +135,7 @@ SpriteRenderer:
   m_SortingLayerID: -3106313
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 915946208, guid: 39ef75883a24348c5b32d233b4a1cec3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d133e2fd567864e2c81256bff7897a4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -28,6 +28,8 @@ public class DialogueController : MonoBehaviour
     bool fadeOut = false;
 
     [Header("Cutscene")]
+    public bool isCutscene = false;
+    public AudioManager cutsceneAudioManager;
     public PlayableDirector cutsceneDirector;
 
     private void Awake()
@@ -42,6 +44,7 @@ public class DialogueController : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "IntroCutscene")
         {
+            isCutscene = true;
             ShowDialogue();
         }
     }
@@ -183,8 +186,13 @@ public class DialogueController : MonoBehaviour
 
     public void ShowDialogue()
     {
-        PlayerController.instance.isInteracting = true;
-        PlayerController.instance.ResetVelocity();
+        if (PlayerController.instance != null)
+        {
+            PlayerController.instance.isInteracting = true;
+             PlayerController.instance.ResetVelocity();
+        }
+        
+       
 
         if (dialogues[0].shouldUseFadeIn)
         {
@@ -217,7 +225,14 @@ public class DialogueController : MonoBehaviour
         foreach (char character in text)
         {
             dialogueText.text += character;
-            PlayerController.instance.playerAudio.PlaySFX(56);
+            if (isCutscene)
+            {
+                cutsceneAudioManager.PlaySFX(56);
+            }
+            else
+            {
+                PlayerController.instance.playerAudio.PlaySFX(56);
+            }
             yield return new WaitForSeconds(typewriterSpeed);
         }
 
@@ -239,7 +254,14 @@ public class DialogueController : MonoBehaviour
             currentDialogueIndex++;
             currentInnerDialogueIndex = 0;
         }
-        PlayerController.instance.playerAudio.PlaySFX(55);
+        if (isCutscene)
+        {
+            cutsceneAudioManager.PlaySFX(55);
+        }
+        else
+        {
+            PlayerController.instance.playerAudio.PlaySFX(55);
+        }
 
         nextText.SetActive(false);
 
@@ -263,11 +285,17 @@ public class DialogueController : MonoBehaviour
     {
         if (!dialogues[currentDialogueIndex - 1].isCutSceneDialogue)
         {
-            PlayerController.instance.isInteracting = false;
+            if (PlayerController.instance != null)
+            {
+                PlayerController.instance.isInteracting = false;
+            }
             if (dialogues[currentDialogueIndex - 1].shouldFollowPlayerAfterDialogue)
             {
-                PlayerController.instance.talkingWithNPC.StartFollowingPlayer();
+                if (PlayerController.instance != null)
+                {
+                    PlayerController.instance.talkingWithNPC.StartFollowingPlayer();
                 PlayerController.instance.talkingWithNPC = null;
+                }
             }
             dialogueUI.gameObject.SetActive(false);
         }
@@ -298,13 +326,17 @@ public class DialogueController : MonoBehaviour
 
         if (dialogues[currentDialogueIndex - 1].shouldMovePlayerBackAfterDialogue)
         {
-            PlayerController.instance.transform.position += Vector3.left * 2f;
-            PlayerController.instance.ResetVelocity();
+            if (PlayerController.instance != null)
+            {
+                 PlayerController.instance.transform.position += Vector3.left * 2f;
+                 PlayerController.instance.ResetVelocity();
+            }
+           
         }
-        // if (dialogues[currentDialogueIndex - 1].shouldGiveItem)
-        // {
-        //     UIController.instance.inventory.AddItem(dialogues[currentDialogueIndex - 1].itemto);
-        // }
+        if (dialogues[currentDialogueIndex - 1].shouldGiveItem && !dialogues[currentDialogueIndex - 1].hasGivenItem)
+        {
+            UIController.instance.inventory.AddItem(dialogues[currentDialogueIndex - 1].itemToGive);
+        }
         if (dialogues[currentDialogueIndex - 1].shouldGiveQuest)
         {
             QuestController.instance.AddQuest(dialogues[currentDialogueIndex - 1].questToGive);
@@ -317,20 +349,25 @@ public class DialogueController : MonoBehaviour
         {
             if (dialogues[currentDialogueIndex - 1].changeDialogueWithCondition)
             {
-                if (dialogues[currentDialogueIndex - 1].speakerData.characterName == "Tezies")
+                if (UIController.instance != null)
                 {
-                    if (UIController.instance.inventory.CheckIfItemExists(dialogues[currentDialogueIndex - 1].questToGive.itemToFind))
+                     if (dialogues[currentDialogueIndex - 1].speakerData.characterName == "Tezies")
                     {
-                        Instantiate(dialogues[currentDialogueIndex - 1].dialogueChangerToSpawn);
-                        UIController.instance.inventory.removeItem(dialogues[currentDialogueIndex - 1].questToGive.itemToFind);
+                        if (UIController.instance.inventory.CheckIfItemExists(dialogues[currentDialogueIndex - 1].questToGive.itemToFind.itemName))
+                        {
+                            Debug.Log(dialogues[currentDialogueIndex - 1].questToGive.itemToFind.itemName);
+                            UIController.instance.inventory.removeItem(dialogues[currentDialogueIndex - 1].questToGive.itemToFind.itemName);
+                            Instantiate(dialogues[currentDialogueIndex - 1].dialogueChangerToSpawn);
+                        }
                     }
-                }
-                else if (dialogues[currentDialogueIndex - 1].speakerData.characterName == "Alya")
-                {
-                    if (UIController.instance.inventory.CheckIfItemExists(dialogues[currentDialogueIndex - 1].questToGive.itemToFind))
+                    else if (dialogues[currentDialogueIndex - 1].speakerData.characterName == "Alya")
                     {
-                        Instantiate(dialogues[currentDialogueIndex - 1].dialogueChangerToSpawn);
-                        UIController.instance.inventory.removeItem(dialogues[currentDialogueIndex - 1].questToGive.itemToFind);
+                        if (UIController.instance.inventory.CheckIfItemExists(dialogues[currentDialogueIndex - 1].questToGive.itemToFind.itemName))
+                        {
+                            Debug.Log(dialogues[currentDialogueIndex - 1].questToGive.itemToFind.itemName);
+                            UIController.instance.inventory.removeItem(dialogues[currentDialogueIndex - 1].questToGive.itemToFind.itemName);
+                            Instantiate(dialogues[currentDialogueIndex - 1].dialogueChangerToSpawn);
+                        }
                     }
                 }
             }

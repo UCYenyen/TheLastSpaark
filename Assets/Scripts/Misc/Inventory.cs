@@ -1,5 +1,6 @@
 using UnityEngine.UI;
 using UnityEngine;
+using System.Collections;
 
 public class Inventory : MonoBehaviour
 {
@@ -16,7 +17,6 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void UpdateInventoryUI()
@@ -27,19 +27,21 @@ public class Inventory : MonoBehaviour
             {
                 itemsSlots[i].sprite = ownedItems[i].itemIcon;
                 itemsSlots[i].color = Color.white;
+                itemsSlots[i].SetNativeSize();
             }
             else
             {
                 itemsSlots[i].sprite = emptySlotSprite;
                 itemsSlots[i].color = Color.clear;
+                itemsSlots[i].SetNativeSize();
             }
         }
     }
-    public bool CheckIfItemExists(Item itemToCheck)
+    public bool CheckIfItemExists(string itemName)
     {
         for (int i = 0; i < ownedItems.Length; i++)
         {
-            if (ownedItems[i] == itemToCheck)
+            if (ownedItems[i].itemName == itemName)
             {
                 return true;
             }
@@ -50,21 +52,35 @@ public class Inventory : MonoBehaviour
     {
         if (index < 0 || index >= ownedItems.Length || ownedItems[index] == null)
         {
-            Debug.Log("Invalid item index or item does not exist.");
             return;
         }
 
         if (ownedItems[index].isConsumable)
         {
             // Apply item effects here
+            UIController.instance.itemNotificationText.text = "Menggunakan " + ownedItems[index].itemName;
+            StartCoroutine(hideNotificationText());
 
+            PlayerController.instance.healthController.Heal(ownedItems[index].healthRestoreAmount);
+            removeItem(ownedItems[index].itemName);
+        }
+        else
+        {
+            UIController.instance.itemNotificationText.text = "Item ini tidak dapat digunakan!";
+            StartCoroutine(hideNotificationText());
         }
     }
-    public void removeItem(Item itemToRemove)
+    IEnumerator hideNotificationText()
+    {
+        UIController.instance.itemNotificationText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        UIController.instance.itemNotificationText.gameObject.SetActive(false);
+    }
+    public void removeItem(string itemName)
     {
         for (int i = 0; i < ownedItems.Length; i++)
         {
-            if (ownedItems[i] == itemToRemove)
+            if (ownedItems[i].itemName == itemName)
             {
                 ownedItems[i] = null;
                 UpdateInventoryUI();

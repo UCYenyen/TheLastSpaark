@@ -378,7 +378,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4279260276780606416, guid: 3da05e9f66c9f254c8875335e7e9179e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 18bea483bcc5a46ea84948400e8702a5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -532,6 +532,10 @@ MonoBehaviour:
   targetNPC: {fileID: 291590483177066313}
   isPlayerFrozenCrystal: 0
   audioManager: {fileID: 144221896934122007}
+  pressE: {fileID: 0}
+  unfreezeAmountPerClick: 0
+  currentUnfreezeMeter: 0
+  maxUnfreezeMeter: 100
 --- !u!1 &6165297149565927881
 GameObject:
   m_ObjectHideFlags: 0

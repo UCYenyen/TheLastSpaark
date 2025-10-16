@@ -7,6 +7,17 @@ public class Campfire : MonoBehaviour
     public GameObject popUp;
     bool canRefillTorch = false;
     bool isLit = true;
+    public GameObject campfireLitter;
+    public GameObject campfireParent;
+
+    public void DeactivateParent()
+    {
+        if (campfireParent != null)
+        {
+            campfireParent.SetActive(false);
+            campfireLitter.SetActive(true);
+        }
+    }
     void Update()
     {
         if (isLit)

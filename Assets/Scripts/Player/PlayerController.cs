@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
+    public bool isCutscene = false;
     public CharacterSO characterData;
     public Room currentRoom;
 
@@ -49,7 +50,6 @@ public class PlayerController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -59,52 +59,76 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isNearlightSource)
+        if (isCutscene == false)
         {
-            if (isInteracting == false)
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                if (currentFreezeMeter < 100f)
+                UIController.instance.inventory.UseItem(0);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                UIController.instance.inventory.UseItem(1);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                UIController.instance.inventory.UseItem(2);
+            }
+            
+            if (!isNearlightSource)
+            {
+                if (isInteracting == false)
                 {
-                    currentFreezeMeter += freezeDecayRate * Time.deltaTime;
-                    currentFreezeMeter = Mathf.Clamp(currentFreezeMeter, 0f, maxFreezeMeter);
-                    UIController.instance.freezeMeterSlider.fillAmount = currentFreezeMeter / maxFreezeMeter;
-                    if (currentFreezeMeter > 50f)
+                    if (currentFreezeMeter < 100f)
                     {
-                        UIController.instance.aboutToFreezePanel.SetActive(true);
+                        currentFreezeMeter += freezeDecayRate * Time.deltaTime;
+                        currentFreezeMeter = Mathf.Clamp(currentFreezeMeter, 0f, maxFreezeMeter);
+                        UIController.instance.freezeMeterSlider.fillAmount = currentFreezeMeter / maxFreezeMeter;
+                        if (currentFreezeMeter > 50f)
+                        {
+                            UIController.instance.aboutToFreezePanel.SetActive(true);
+                        }
+                        else
+                        {
+                            UIController.instance.aboutToFreezePanel.SetActive(false);
+                        }
+                    }
+                    else
+                    {
+                        UIController.instance.aboutToFreezePanel.SetActive(false);
+                        isFrozen = true;
                     }
                 }
-                else
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (!isInteracting && !isFrozen && !isDead && !isDashing)
                 {
-                    UIController.instance.aboutToFreezePanel.SetActive(false);
-                    isFrozen = true;
+                    Dash();
                 }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (!isInteracting && !isFrozen && !isDead && !isDashing)
+            if (isFrozen)
             {
-                Dash();
+                ResetVelocity();
+
+                UIController.instance.freezeMeterAnimator.Play("frozen");
+                freezeCrystal.SetActive(true);
             }
-        }
-        if (isFrozen)
-        {
-            ResetVelocity();
+            else
+            {
+                UIController.instance.freezeMeterAnimator.Play("normal");
+            }
 
-            UIController.instance.freezeMeterAnimator.Play("frozen");
-            freezeCrystal.SetActive(true);
+            CalculateDash();
+            CalculateDashCooldown();
         }
-        else
-        {
-            UIController.instance.freezeMeterAnimator.Play("normal");
-        }
-
-        CalculateDash();
-        CalculateDashCooldown();
     }
     void FixedUpdate()
     {
-        HandleMovement();
+        if (isCutscene == false)
+        {
+            HandleMovement();
+        }
+        
     }
     void HandleMovement()
     {
@@ -131,7 +155,14 @@ public class PlayerController : MonoBehaviour
     }
     public void PlayWalkSFX()
     {
-        playerAudio.PlayHumanWalkSFX();
+        if (!isCutscene)
+        {
+            playerAudio.PlayHumanWalkSFX();
+        }
+        else
+        {
+            DialogueController.instance.cutsceneAudioManager.PlayHumanWalkSFX();
+        }
     }
     void Dash()
     {
@@ -173,10 +204,14 @@ public class PlayerController : MonoBehaviour
 
     public void ResetVelocity()
     {
-        rb.velocity = Vector2.zero;
-        isDashing = false;
-        dashDuration = 0;
-        anim.SetBool("isWalking", false);
+        if (isCutscene == false)
+        {
+             rb.velocity = Vector2.zero;
+            isDashing = false;
+            dashDuration = 0;
+            anim.SetBool("isWalking", false);
+        }
+       
     }
 
     public void IncrementFreezeMeter(float incrementSpeed)

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Alya interaction when still dont get the bell
   m_EditorClassIdentifier: 
   dialogueLines:
-  - 'Badai Salju menghempaskan nya ke arah hutan.
+  - 'Hmm...
 
 '
+  - Seharusnya badai salju menghempaskan nya ke arah hutan.
   shouldUseFadeOut: 0
   shouldUseFadeIn: 0
   shouldFadeOutUsingUICanvasFadePanel: 0

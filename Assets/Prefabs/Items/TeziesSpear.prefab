@@ -47,17 +47,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePickedUp: 1
+  isQuestItem: 0
   isInRange: 0
-  inRangeSprite: {fileID: 1991130680, guid: 39ef75883a24348c5b32d233b4a1cec3, type: 3}
-  outOfRangeSprite: {fileID: 915946208, guid: 39ef75883a24348c5b32d233b4a1cec3, type: 3}
+  inRangeSprite: {fileID: 21300000, guid: 0f0a0244d72d041448e5113de0f82356, type: 3}
+  outOfRangeSprite: {fileID: 21300000, guid: e36eca5e2526645b79da1d3072d34ff0, type: 3}
   itemSpriteRenderer: {fileID: 503464213544493124}
   itemName: Tombak Tezies
   itemDescription: Tombak maut
-  itemIcon: {fileID: 1991130680, guid: 39ef75883a24348c5b32d233b4a1cec3, type: 3}
+  itemIcon: {fileID: 21300000, guid: e36eca5e2526645b79da1d3072d34ff0, type: 3}
   isConsumable: 0
   healthRestoreAmount: 0
   manaRestoreAmount: 0
-  staminaRestoreAmount: 0
+  staminaRestoreAmount: -8.71
 --- !u!58 &5129907265810955679
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -134,7 +135,7 @@ SpriteRenderer:
   m_SortingLayerID: -3106313
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 915946208, guid: 39ef75883a24348c5b32d233b4a1cec3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e36eca5e2526645b79da1d3072d34ff0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
